@@ -1,0 +1,2 @@
+# gitloclizetest
+testing git localize

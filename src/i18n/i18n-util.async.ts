@@ -2,13 +2,25 @@
 /* eslint-disable */
 
 import { initFormatters } from './formatters'
-import type { Locales, Translations } from './i18n-types'
+import type { Locales, Namespaces, Translations } from './i18n-types'
 import { loadedFormatters, loadedLocales, locales } from './i18n-util'
 
 const localeTranslationLoaders = {
 	de: () => import('./de'),
 	en: () => import('./en'),
 	es: () => import('./es'),
+}
+
+const localeNamespaceLoaders = {
+	de: {
+		vue: () => import('./de/vue')
+	},
+	en: {
+		vue: () => import('./en/vue')
+	},
+	es: {
+		vue: () => import('./es/vue')
+	}
 }
 
 const updateDictionary = (locale: Locales, dictionary: Partial<Translations>): Translations =>
@@ -26,3 +38,9 @@ export const loadAllLocalesAsync = (): Promise<void[]> => Promise.all(locales.ma
 
 export const loadFormatters = (locale: Locales): void =>
 	void (loadedFormatters[locale] = initFormatters(locale))
+
+export const importNamespaceAsync = async<Namespace extends Namespaces>(locale: Locales, namespace: Namespace) =>
+	(await localeNamespaceLoaders[locale][namespace]()).default as unknown as Translations[Namespace]
+
+export const loadNamespaceAsync = async <Namespace extends Namespaces>(locale: Locales, namespace: Namespace): Promise<void> =>
+	void updateDictionary(locale, { [namespace]: await importNamespaceAsync(locale, namespace )})

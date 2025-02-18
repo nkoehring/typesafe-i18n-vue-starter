@@ -9,10 +9,23 @@ import de from './de'
 import en from './en'
 import es from './es'
 
+import de_vue from './de/vue'
+import en_vue from './en/vue'
+import es_vue from './es/vue'
+
 const localeTranslations = {
-	de,
-	en,
-	es,
+	de: {
+		...de,
+		vue: de_vue
+	},
+	en: {
+		...en,
+		vue: en_vue
+	},
+	es: {
+		...es,
+		vue: es_vue
+	},
 }
 
 export const loadLocale = (locale: Locales): void => {

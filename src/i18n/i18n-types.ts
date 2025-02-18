@@ -2,7 +2,7 @@
 /* eslint-disable */
 import type { BaseTranslation as BaseTranslationType, LocalizedString, RequiredParams } from 'typesafe-i18n'
 
-export type BaseTranslation = BaseTranslationType
+export type BaseTranslation = BaseTranslationType & DisallowNamespaces
 export type BaseLocale = 'de'
 
 export type Locales =
@@ -10,9 +10,12 @@ export type Locales =
 	| 'en'
 	| 'es'
 
-export type Translation = RootTranslation
+export type Translation = RootTranslation & DisallowNamespaces
 
-export type Translations = RootTranslation
+export type Translations = RootTranslation &
+{
+	vue: NamespaceVueTranslation
+}
 
 type RootTranslation = {
 	/**
@@ -30,6 +33,24 @@ type RootTranslation = {
 	apple: string
 }
 
+export type NamespaceVueTranslation = {
+	/**
+	 * V​i​t​e​ ​u​n​d​ ​V​u​e
+	 */
+	msg: string
+}
+
+export type Namespaces =
+	| 'vue'
+
+type DisallowNamespaces = {
+	/**
+	 * reserved for 'vue'-namespace\
+	 * you need to use the `./vue/index.ts` file instead
+	 */
+	vue?: "[typesafe-i18n] reserved for 'vue'-namespace. You need to use the `./vue/index.ts` file instead."
+}
+
 export type TranslationFunctions = {
 	/**
 	 * Hallo {name}! Bitte hinterlasse einen Stern, wenn dir das Projekt gefällt: https://github.com/ivanhofer/typesafe-i18n
@@ -43,6 +64,12 @@ export type TranslationFunctions = {
 	 * {{Kein|Ein|Zwei|Ein paar|einige|viele}} {{Apfel|Äpfel}}
 	 */
 	apple: (arg0: number | string | boolean) => LocalizedString
+	vue: {
+		/**
+		 * Vite und Vue
+		 */
+		msg: () => LocalizedString
+	}
 }
 
 export type Formatters = {}

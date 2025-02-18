@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import LocaleSelector from './components/LocaleSelector.vue'
+
+import { typesafeI18n } from './i18n/i18n-vue'
+const { LL } = typesafeI18n()
 </script>
 
 <template>
@@ -13,7 +16,7 @@ import LocaleSelector from './components/LocaleSelector.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <HelloWorld :msg="LL.vue.msg()" />
 </template>
 
 <style scoped>

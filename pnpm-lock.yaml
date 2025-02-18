@@ -15,9 +15,15 @@ importers:
         specifier: ^3.2.47
         version: 3.5.13(typescript@4.9.5)
     devDependencies:
+      '@types/node':
+        specifier: ^22.13.4
+        version: 22.13.4
       '@vitejs/plugin-vue':
         specifier: ^4.1.0
-        version: 4.6.2(vite@4.5.9)(vue@3.5.13(typescript@4.9.5))
+        version: 4.6.2(vite@4.5.9(@types/node@22.13.4))(vue@3.5.13(typescript@4.9.5))
+      dotenv:
+        specifier: ^16.4.7
+        version: 16.4.7
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -26,7 +32,7 @@ importers:
         version: 4.9.5
       vite:
         specifier: ^4.2.0
-        version: 4.5.9
+        version: 4.5.9(@types/node@22.13.4)
       vue-tsc:
         specifier: ^1.2.0
         version: 1.8.27(typescript@4.9.5)
@@ -185,6 +191,9 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.0':
     resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
 
+  '@types/node@22.13.4':
+    resolution: {integrity: sha512-ywP2X0DYtX3y08eFVx5fNIw7/uIv8hYUKgXoK8oayJlLnKcRfEYCxWMVE1XagUdVtCJlZT1AU4LXEABW+L1Peg==}
+
   '@vitejs/plugin-vue@4.6.2':
     resolution: {integrity: sha512-kqf7SGFoG+80aZG6Pf+gsZIVvGSCKE98JbiWqcCV9cThtg91Jav0yvYFC9Zb+jKetNGF6ZKeoaxgZfND21fWKw==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -324,6 +333,10 @@ packages:
   define-properties@1.2.1:
     resolution: {integrity: sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==}
     engines: {node: '>= 0.4'}
+
+  dotenv@16.4.7:
+    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+    engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -801,6 +814,9 @@ packages:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
     engines: {node: '>= 0.4'}
 
+  undici-types@6.20.0:
+    resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
+
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
 
@@ -952,9 +968,13 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
 
-  '@vitejs/plugin-vue@4.6.2(vite@4.5.9)(vue@3.5.13(typescript@4.9.5))':
+  '@types/node@22.13.4':
     dependencies:
-      vite: 4.5.9
+      undici-types: 6.20.0
+
+  '@vitejs/plugin-vue@4.6.2(vite@4.5.9(@types/node@22.13.4))(vue@3.5.13(typescript@4.9.5))':
+    dependencies:
+      vite: 4.5.9(@types/node@22.13.4)
       vue: 3.5.13(typescript@4.9.5)
 
   '@volar/language-core@1.11.1':
@@ -1148,6 +1168,8 @@ snapshots:
       define-data-property: 1.1.4
       has-property-descriptors: 1.0.2
       object-keys: 1.1.1
+
+  dotenv@16.4.7: {}
 
   dunder-proto@1.0.1:
     dependencies:
@@ -1768,17 +1790,20 @@ snapshots:
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
 
+  undici-types@6.20.0: {}
+
   validate-npm-package-license@3.0.4:
     dependencies:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
-  vite@4.5.9:
+  vite@4.5.9(@types/node@22.13.4):
     dependencies:
       esbuild: 0.18.20
       postcss: 8.5.2
       rollup: 3.29.5
     optionalDependencies:
+      '@types/node': 22.13.4
       fsevents: 2.3.3
 
   vue-template-compiler@2.7.16:

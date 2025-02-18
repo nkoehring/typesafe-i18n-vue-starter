@@ -19,18 +19,24 @@ export type Translations = RootTranslation &
 
 type RootTranslation = {
 	/**
+	 * {​{​K​e​i​n​|​E​i​n​|​Z​w​e​i​|​E​i​n​ ​p​a​a​r​|​e​i​n​i​g​e​|​v​i​e​l​e​}​}​ ​{​{​A​p​f​e​l​|​Ä​p​f​e​l​}​}
+	 */
+	apple: string
+	/**
 	 * H​a​l​l​o​ ​{​n​a​m​e​}​!​ ​B​i​t​t​e​ ​h​i​n​t​e​r​l​a​s​s​e​ ​e​i​n​e​n​ ​S​t​e​r​n​,​ ​w​e​n​n​ ​d​i​r​ ​d​a​s​ ​P​r​o​j​e​k​t​ ​g​e​f​ä​l​l​t​:​ ​h​t​t​p​s​:​/​/​g​i​t​h​u​b​.​c​o​m​/​i​v​a​n​h​o​f​e​r​/​t​y​p​e​s​a​f​e​-​i​1​8​n
 	 * @param {string} name
 	 */
 	hello: RequiredParams<'name'>
+	nested: {
+		/**
+		 * I​n​s​ ​g​e​m​a​c​h​t​e​ ​N​e​s​t​,​ ​s​o​z​u​s​a​g​e​n​!
+		 */
+		key: string
+	}
 	/**
 	 * W​e​l​t
 	 */
 	world: string
-	/**
-	 * {​{​K​e​i​n​|​E​i​n​|​Z​w​e​i​|​E​i​n​ ​p​a​a​r​|​e​i​n​i​g​e​|​v​i​e​l​e​}​}​ ​{​{​A​p​f​e​l​|​Ä​p​f​e​l​}​}
-	 */
-	apple: string
 }
 
 export type NamespaceVueTranslation = {
@@ -53,17 +59,23 @@ type DisallowNamespaces = {
 
 export type TranslationFunctions = {
 	/**
+	 * {{Kein|Ein|Zwei|Ein paar|einige|viele}} {{Apfel|Äpfel}}
+	 */
+	apple: (arg0: number | string | boolean) => LocalizedString
+	/**
 	 * Hallo {name}! Bitte hinterlasse einen Stern, wenn dir das Projekt gefällt: https://github.com/ivanhofer/typesafe-i18n
 	 */
 	hello: (arg: { name: string }) => LocalizedString
+	nested: {
+		/**
+		 * Ins gemachte Nest, sozusagen!
+		 */
+		key: () => LocalizedString
+	}
 	/**
 	 * Welt
 	 */
 	world: () => LocalizedString
-	/**
-	 * {{Kein|Ein|Zwei|Ein paar|einige|viele}} {{Apfel|Äpfel}}
-	 */
-	apple: (arg0: number | string | boolean) => LocalizedString
 	vue: {
 		/**
 		 * Vite und Vue
